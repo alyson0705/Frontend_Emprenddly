@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #b9a8c4;
+  background: #E5DED3;
   color: #333;
   line-height: 1.6;
 }
@@ -18,9 +18,9 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 8px 15px;
-  background: linear-gradient(to right, #F0C2BE, #6C557A);
+  background: linear-gradient(to right, #F4E1B6, #B6A999);
   height: 70px;
-  box-shadow: 0 3px 6px #5a2f61;
+  box-shadow: 0 3px 6px #B6A999;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 55px;
   position: fixed;
@@ -39,10 +39,10 @@ body {
   text-align: center;
   font-size: 42px;
   font-weight: 800;
-  color: #f0c2be;
+  color: #B6A999;
   margin-top: 110px;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 6px #6C557A;
+  text-shadow: 2px 2px 6px #E5DED3;
 }
 
 img {
@@ -53,7 +53,7 @@ img {
 
 hr {
   border: none;
-  border-top: 3px solid #411e02;
+  border-top: 3px solid #B6A999;
   margin: 15px auto 25px auto;
   width: 80%;
 }
@@ -64,29 +64,28 @@ hr {
   margin: 20px auto 40px auto;
   text-align: center;
   padding: 35px;
-  background-image: linear-gradient(to right, #6c557a, #f0c2be);
+  background-image: linear-gradient(to right, #B6A999, #CADBEC);
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  box-shadow: 0 5px 15px rgba(182,169,153,0.4);
 }
 
 /* --- BOTONES DEL MENÚ --- */
 .Botones a {
-  display: block;                 /* 👈 ya no flex, para que sea como botón normal */
-  text-align: left;             /* centra el texto */
-  padding: 12px 15px;             /* menos padding para que no se vea tan gordo */
-  font-size: 16px !important;     /* 👈 forzar tamaño de letra */
+  display: block;
+  text-align: left;
+  padding: 12px 15px;
+  font-size: 16px !important;
   margin: 15px auto;
-  width: 300px;                   /* 🔹 ancho fijo suficiente */
-  background-color: #F0C2BE;
-  color: #76357c;
+  width: 300px;
+  background-color: #F4E1B6;
+  color: #B6A999;
   border-radius: 8px;
-  box-shadow: 3px 3px 8px #6C557A;
+  box-shadow: 3px 3px 8px #B6A999;
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;
-  white-space: nowrap;            /* evita salto de línea */
+  white-space: nowrap;
 }
-
 
 .Botones a i {
   font-size: 22px;
@@ -96,8 +95,8 @@ hr {
 
 .Botones a:hover {
   transform: scale(1.05);
-  background: #e6d6ad;
-  color: #4a148c;
+  background: #CADBEC;
+  color: #B6A999;
 }
 
 /* --- BOTÓN DE ACCIÓN (REGISTRARSE) --- */
@@ -109,19 +108,19 @@ hr {
 .Container1 button {
   font-size: 22px;
   padding: 12px 35px;
-  background: #6C557A;
-  color: #f0c2be;
+  background: #B6A999;
+  color: #F5F6F7;
   border: none;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease;
-  box-shadow: 3px 3px 8px #5a2f61;
+  box-shadow: 3px 3px 8px #B6A999;
   text-align: center;
 }
 
 .Container1 button:hover {
-  background: #f0c2be;
-  color: #6C557A;
+  background: #F4E1B6;
+  color: #B6A999;
   transform: scale(1.05);
 }

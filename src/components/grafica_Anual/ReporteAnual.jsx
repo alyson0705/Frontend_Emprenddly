@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Chart } from "chart.js/auto"; 
+import { Chart } from "chart.js/auto";
 import LogoEmpren from "../../assets/Logo_Empren.png";
 import "./Anual1.css";
 
@@ -8,39 +8,94 @@ function ReporteAnual() {
   const [datosChart, setDatosChart] = useState(null);
 
   const toggleCalendario = () => setMostrarCalendario(!mostrarCalendario);
-    
-  
-  // Función para obtener datos del backend según el año
-const actualizarReporte = async () => {
-  const anio = document.getElementById("anio").value;
-  if (!anio) return;
 
-  try {
-    const response = await fetch(`http://localhost:4000/api/ventas_anuales?year=${anio}`);
-    const data = await response.json();
-    console.log("Datos recibidos:", data); // Para debug
+  // 🔹 Simular datos de reporte anual (sin backend)
+  const actualizarReporte = async () => {
+    const anio = document.getElementById("anio").value;
+    if (!anio) return;
+
+    // Generar valores aleatorios para cada mes
+    const meses = [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre",
+    ];
+
+    const ventas = meses.map(() => Math.floor(Math.random() * 200000) + 80000);
+    const gastos = meses.map(() => Math.floor(Math.random() * 100000) + 20000);
+    const ganancias = ventas.map((v, i) => v - gastos[i]);
+
+    // Estructura esperada por Chart.js
+    const data = {
+      labels: meses,
+      datasets: [
+        {
+          label: `Ventas ${anio}`,
+          data: ventas,
+          borderColor: "#36A2EB",
+          backgroundColor: "rgba(54,162,235,0.2)",
+          fill: true,
+          tension: 0.3,
+        },
+        {
+          label: `Gastos ${anio}`,
+          data: gastos,
+          borderColor: "#FF6384",
+          backgroundColor: "rgba(255,99,132,0.2)",
+          fill: true,
+          tension: 0.3,
+        },
+        {
+          label: `Ganancia Neta ${anio}`,
+          data: ganancias,
+          borderColor: "#4CAF50",
+          backgroundColor: "rgba(76,175,80,0.2)",
+          fill: true,
+          tension: 0.3,
+        },
+      ],
+    };
+
     setDatosChart(data);
-  } catch (error) {
-    console.error("Error al obtener reporte anual:", error);
-  }
-};
-  
+  };
 
-
- 
- // Dibujar gráfico cuando cambien los datos
+  // 🔹 Dibujar gráfico cuando cambien los datos
   useEffect(() => {
     if (!datosChart) return;
 
     const ctx = document.getElementById("chartAnual");
-    if (Chart.getChart("chartAnual")) Chart.getChart("chartAnual").destroy();
+    const existingChart = Chart.getChart("chartAnual");
+    if (existingChart) existingChart.destroy();
 
     new Chart(ctx, {
       type: "line",
       data: datosChart,
       options: {
         responsive: true,
-        plugins: { legend: { position: "bottom" } },
+        plugins: {
+          legend: { position: "bottom" },
+          title: {
+            display: true,
+            text: "Reporte Anual de Ganancias",
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: (value) => `$${value.toLocaleString()}`,
+            },
+          },
+        },
       },
     });
   }, [datosChart]);
@@ -76,34 +131,37 @@ const actualizarReporte = async () => {
         </div>
       </label>
 
-
-
       {/* Título */}
       <div>
         <h1 className="TituloAnual">Reporte de Ganancias (Anual)</h1>
         <hr className="hranual" />
       </div>
+
       {/* Botón calendario */}
       <div className="dia-container" id="btn-anual" onClick={toggleCalendario}>
         <span className="dia-texto">Año</span>
-        <i className="fa-solid fa-calendar-days fa-4x"></i> {/* el fa-4x hace el icono mas grande*/}
+        <i className="fa-solid fa-calendar-days fa-4x"></i>
       </div>
 
       {/* Selector de año */}
       {mostrarCalendario && (
         <div className="calendario-containeranual" id="calendario-anual">
-          <input className="año"
+          <input
+            className="año"
             type="number"
             id="anio"
             placeholder="Ingrese el año"
             min="2000"
             max="2100"
           />
-          <button className="actuanual" id="btn-refresh-anual" title="Actualizar" onClick={actualizarReporte}>
+          <button
+            className="actuanual"
+            id="btn-refresh-anual"
+            title="Actualizar"
+            onClick={actualizarReporte}
+          >
             Actualizar
           </button>
-
-
         </div>
       )}
 
@@ -114,7 +172,5 @@ const actualizarReporte = async () => {
     </div>
   );
 }
-
-
 
 export default ReporteAnual;

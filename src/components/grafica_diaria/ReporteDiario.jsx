@@ -1,32 +1,46 @@
-import React, { useState, useEffect, useRef  } from "react";
-import { Chart } from "chart.js/auto"; // Importar la gráfica
+import React, { useState, useEffect, useRef } from "react";
+import { Chart } from "chart.js/auto";
 import LogoEmpren from "../../assets/Logo_Empren.png";
 import "./Diario.css";
 
 function ReporteDiario() {
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
   const [fechaSeleccionada, setFechaSeleccionada] = useState("");
-  const chartRef = useRef(null); //nuevas
+  const chartRef = useRef(null);
   const canvasRef = useRef(null);
 
-
+  // Mostrar/Ocultar el calendario
   const toggleCalendario = () => {
     setMostrarCalendario(!mostrarCalendario);
   };
 
+  // Función simulada (sin backend)
   const fetchData = async (fecha) => {
     try {
-      const res = await fetch(`http://localhost:4000/api/ganancias/diario/${fecha}`);
-      const data = await res.json();
-
       if (!canvasRef.current) return;
 
-      // Destruir el gráfico previo si existe
+      // Generar datos aleatorios simulados según la fecha
+      const randomVentas = Math.floor(Math.random() * 200000) + 50000;
+      const randomGastos = Math.floor(Math.random() * 100000) + 20000;
+      const randomGanancia = randomVentas - randomGastos;
+
+      const data = {
+        labels: ["Ventas", "Gastos", "Ganancia Neta"],
+        datasets: [
+          {
+            label: `Reporte Diario - ${fecha}`,
+            data: [randomVentas, randomGastos, randomGanancia],
+            backgroundColor: ["#36A2EB", "#FF6384", "#4CAF50"],
+          },
+        ],
+      };
+
+      // Destruir gráfico anterior si existe
       if (chartRef.current) {
         chartRef.current.destroy();
       }
 
-  // Crear nueva gráfica
+      // Crear nueva gráfica
       chartRef.current = new Chart(canvasRef.current, {
         type: "bar",
         data,
@@ -34,7 +48,7 @@ function ReporteDiario() {
           responsive: true,
           plugins: {
             legend: {
-              display: false,
+              display: true,
               position: "bottom",
               labels: {
                 usePointStyle: true,
@@ -43,17 +57,22 @@ function ReporteDiario() {
               },
             },
           },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: (value) => `$${value.toLocaleString()}`,
+              },
+            },
+          },
         },
       });
-
-    
     } catch (error) {
       console.error("Error cargando datos diarios:", error);
     }
   };
 
-
-  // Al hacer clic en "Actualizar"
+  // Botón "Actualizar"
   const handleActualizar = () => {
     if (fechaSeleccionada) {
       fetchData(fechaSeleccionada);
@@ -66,7 +85,7 @@ function ReporteDiario() {
     setFechaSeleccionada(hoy);
     fetchData(hoy);
 
-    // cleanup: destruir chart al desmontar
+    // Limpiar gráfico al desmontar
     return () => {
       if (chartRef.current) {
         chartRef.current.destroy();
@@ -78,7 +97,7 @@ function ReporteDiario() {
     <div>
       {/* Barra superior */}
       <header className="barra-superior">
-        <img src={LogoEmpren} alt="Logo" className="logoem" />
+        <img src={LogoEmpren} alt="Logo" className="logoem" />
       </header>
 
       {/* Menú lateral */}
@@ -91,16 +110,48 @@ function ReporteDiario() {
         </div>
 
         <div className="Menu">
-          <h1 className="menu_titulo"> Menu </h1>
-         <ul>
-            <li><a href="http://localhost:5173/usuarios"><i className="fas fa-user"></i>Usuarios</a></li>
-            <li><a href="http://localhost:5173/registroinventario"><i className="fas fa-clipboard-list"></i>Inventario</a></li>
-            <li><a href="#"><i className="fas fa-cart-plus"></i>Registro De Ventas</a></li>
-            <li><a href="http://localhost:5173/reporteventas"><i className="fas fa-chart-line"></i>Reporte De Ventas</a></li>
-            <li><a href="http://localhost:5173/registrogastos"><i className="fas fa-wallet"></i>Registro De Gastos</a></li>
-            <li><a href="http://localhost:5173/reportegastos"><i className="fas fa-file-invoice-dollar"></i>Reporte De Gastos</a></li>
-            <li><a href="http://localhost:5173/menureporte"><i className="fas fa-dollar-sign"></i>Reporte De Ganancias</a></li>
-            <li><a href="http://localhost:5173/ajustes"><i className="fas fa-cogs"></i>Ajustes</a></li>
+          <h1 className="menu_titulo">Menu</h1>
+          <ul>
+            <li>
+              <a href="http://localhost:5173/usuarios">
+                <i className="fas fa-user"></i>Usuarios
+              </a>
+            </li>
+            <li>
+              <a href="http://localhost:5173/registroinventario">
+                <i className="fas fa-clipboard-list"></i>Inventario
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fas fa-cart-plus"></i>Registro De Ventas
+              </a>
+            </li>
+            <li>
+              <a href="http://localhost:5173/reporteventas">
+                <i className="fas fa-chart-line"></i>Reporte De Ventas
+              </a>
+            </li>
+            <li>
+              <a href="http://localhost:5173/registrogastos">
+                <i className="fas fa-wallet"></i>Registro De Gastos
+              </a>
+            </li>
+            <li>
+              <a href="http://localhost:5173/reportegastos">
+                <i className="fas fa-file-invoice-dollar"></i>Reporte De Gastos
+              </a>
+            </li>
+            <li>
+              <a href="http://localhost:5173/menureporte">
+                <i className="fas fa-dollar-sign"></i>Reporte De Ganancias
+              </a>
+            </li>
+            <li>
+              <a href="http://localhost:5173/ajustes">
+                <i className="fas fa-cogs"></i>Ajustes
+              </a>
+            </li>
           </ul>
         </div>
       </label>
