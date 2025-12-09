@@ -20,6 +20,7 @@ function ReporteDiario() {
     setMostrarCalendario(!mostrarCalendario);
   };
 
+  // Función para cargar datos reales del backend
   const fetchData = async (fecha) => {
     try {
       // 1️⃣ GANANCIAS DEL DÍA
@@ -39,36 +40,29 @@ function ReporteDiario() {
 
       // 4️⃣ GRÁFICA
       if (canvasRef.current) {
-  // Destruir gráfico previo si existe
-  if (chartRef.current) chartRef.current.destroy();
+        if (chartRef.current) chartRef.current.destroy();
 
-  // Crear nueva gráfica con color personalizado
-  chartRef.current = new Chart(canvasRef.current, {
-    type: "bar",
-    data: {
-      ...dataGan,
-      datasets: dataGan.datasets.map(ds => ({
-        ...ds,
-        backgroundColor: "#c893e9ff", // Color de las barras
-        borderWidth: 2
-      }))
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: false },
-      },
-    },
-  });
-}
-
-
-      // ✅ Mostrar botón solo si hay gastos
-      if (totalGas > 0) {
-        setMostrarGananciaNeta(false); // inicialmente oculto
-      } else {
-        setMostrarGananciaNeta(false); // no hay botón si no hay gastos
+        chartRef.current = new Chart(canvasRef.current, {
+          type: "bar",
+          data: {
+            ...dataGan,
+            datasets: dataGan.datasets.map((ds) => ({
+              ...ds,
+              backgroundColor: "#c893e9ff",
+              borderWidth: 2,
+            })),
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+            },
+          },
+        });
       }
+
+      // Mostrar botón de ganancia neta solo si existen gastos
+      setMostrarGananciaNeta(false);
     } catch (error) {
       console.error("Error cargando datos diarios:", error);
     }
@@ -80,7 +74,7 @@ function ReporteDiario() {
     }
   };
 
-  // Al cargar el componente: cargar día actual
+  // Cargar día actual al iniciar
   useEffect(() => {
     const hoy = new Date().toISOString().split("T")[0];
     setFechaSeleccionada(hoy);
@@ -148,16 +142,16 @@ function ReporteDiario() {
         </div>
       )}
 
-      {/* BOTÓN GANANCIA NETA */}
+      {/* Botón Ganancia Neta */}
       {totalGastos > 0 && !mostrarGananciaNeta && (
         <div className="Boton_gannacia_neta">
           <button onClick={() => setMostrarGananciaNeta(true)}>
-          Ganancias Netas
+            Ganancias Netas
           </button>
         </div>
       )}
 
-      {/* GANANCIA NETA (solo si se presionó el botón) */}
+      {/* Tarjeta Ganancia Neta */}
       {mostrarGananciaNeta && (
         <div className="ganancia-neta-card">
           <h2>Ganancia Neta del Día</h2>

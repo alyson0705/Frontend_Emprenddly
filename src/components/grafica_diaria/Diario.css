@@ -23,7 +23,7 @@ html, body {
  background: linear-gradient(to bottom, #CADBEC, #F4E1B6); /* Columbia Blue a Wheat */
  background-attachment: fixed;
  background-size: cover;
- color: #333; 
+ color: #333;
  overflow-x: hidden;
  text-align: center;
 }
@@ -38,12 +38,23 @@ html, body {
  height: 65px;
  box-shadow: 0 3px 5px #B6A999;
  border-bottom-left-radius: 15px;
+}
+
+/* Barra superior */
+.barra-superior {
+  display: flex;
+  align-items: center;
+  padding: 8px 8px;
+  background: linear-gradient(to right, #cadbec, #e5ded3);
+  height: 65px;
+  box-shadow: 0 3px 5px rgba(26, 21, 21, 0.2);
+  border-bottom-left-radius: 25px;
   border-bottom-right-radius: 55px;
- position: fixed;
- top: 0;
- left: 0;
- width: 100%;
- z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 .logo-2anu {
@@ -53,7 +64,6 @@ html, body {
 }
 
 /* MENÚ LATERAL */
-
 .MenuRegistro2 {
  height: 100vh;
  width: 220px;
@@ -69,7 +79,7 @@ html, body {
 }
 
 .menu_titulo { 
-     color: #6C557A;
+ color: #6C557A;
  font-weight: 800;
  text-align: center;
  margin-bottom: 20px;
@@ -212,7 +222,7 @@ input:checked ~ .MenuRegistro2 { transform: translateX(0); box-shadow: 0 0 15px 
 
 .año::placeholder {
  color: #B6A999; 
-  font-size: 18px;
+ font-size: 18px;
 }
 
 .actuanual {
@@ -271,6 +281,6 @@ input:checked ~ .MenuRegistro2 { transform: translateX(0); box-shadow: 0 0 15px 
 }
 
 .tabla-metodos tr:hover {
-background-color: #CADBEC; 
-color: #6C557A;
+ background-color: #CADBEC; 
+ color: #6C557A;
 }

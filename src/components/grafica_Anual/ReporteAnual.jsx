@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Chart } from "chart.js/auto"; 
+import { Chart } from "chart.js/auto";
 import LogoEmpren from "../../assets/Logo_Empren.png";
 import "./Anual1.css";
 
@@ -39,9 +39,6 @@ function ReporteAnual() {
     }
   };
 
-  // =============================
-  //   DIBUJAR GRÁFICA PIE
-  // =============================
   useEffect(() => {
     if (!datosChart) return;
 
@@ -51,8 +48,12 @@ function ReporteAnual() {
     }
 
     const ctx = document.getElementById("chartAnual");
+
     const oldChart = Chart.getChart("chartAnual");
     if (oldChart) oldChart.destroy();
+
+    const existingChart = Chart.getChart("chartAnual");
+    if (existingChart) existingChart.destroy();
 
     new Chart(ctx, {
       type: "pie",
@@ -66,6 +67,10 @@ function ReporteAnual() {
               usePointStyle: true,
               pointStyle: "circle"
             }
+          },
+          title: {
+            display: true,
+            text: "Reporte Anual de Ganancias",
           }
         }
       }
@@ -118,14 +123,20 @@ function ReporteAnual() {
       {/* Selector de año */}
       {mostrarCalendario && (
         <div className="calendario-containeranual" id="calendario-anual">
-          <input className="año"
+          <input
+            className="año"
             type="number"
             id="anio"
             placeholder="Ingrese el año"
             min="2000"
             max="2100"
           />
-          <button className="actuanual" id="btn-refresh-anual" title="Actualizar" onClick={actualizarReporte}>
+          <button
+            className="actuanual"
+            id="btn-refresh-anual"
+            title="Actualizar"
+            onClick={actualizarReporte}
+          >
             Actualizar
           </button>
         </div>
@@ -136,30 +147,28 @@ function ReporteAnual() {
         <canvas id="chartAnual"></canvas>
       </div>
 
-
       {tablaMetodos && (
-       <table className="tabla-metodos">
-  <thead>
-    <tr>
-      <th>Mes</th>
-      <th>Ganancia Total</th>
-    </tr>
-  </thead>
+        <table className="tabla-metodos">
+          <thead>
+            <tr>
+              <th>Mes</th>
+              <th>Ganancia Total</th>
+            </tr>
+          </thead>
 
-  <tbody>
-    {Object.entries(tablaMetodos).map(([mes, valores]) => {
-      const total = Number(valores.total) || 0; // asegurar entero
+          <tbody>
+            {Object.entries(tablaMetodos).map(([mes, valores]) => {
+              const total = Number(valores.total) || 0; // asegurar entero
 
-      return (
-        <tr key={mes}>
-          <td>{mes}</td>
-          <td><b>{Math.round(total).toLocaleString()}</b></td>
-        </tr>
-      );
-    })}
-  </tbody>
-</table>
-
+              return (
+                <tr key={mes}>
+                  <td>{mes}</td>
+                  <td><b>{Math.round(total).toLocaleString()}</b></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       )}
     </div>
   );
