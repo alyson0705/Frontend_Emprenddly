@@ -6,42 +6,69 @@ import "./Anual1.css";
 function ReporteAnual() {
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
   const [datosChart, setDatosChart] = useState(null);
+  const [tablaMetodos, setTablaMetodos] = useState(null);
 
   const toggleCalendario = () => setMostrarCalendario(!mostrarCalendario);
-    
-  
-  // Función para obtener datos del backend según el año
-const actualizarReporte = async () => {
-  const anio = document.getElementById("anio").value;
-  if (!anio) return;
 
-  try {
-    const response = await fetch(`http://localhost:4000/api/ventas_anuales?year=${anio}`);
-    const data = await response.json();
-    console.log("Datos recibidos:", data); // Para debug
-    setDatosChart(data);
-  } catch (error) {
-    console.error("Error al obtener reporte anual:", error);
-  }
-};
-  
+  // =============================
+  //   OBTENER REPORTE DEL BACKEND
+  // =============================
+  const actualizarReporte = async () => {
+    const anio = document.getElementById("anio").value;
+    if (!anio) return;
 
+    try {
+      const response = await fetch(`http://localhost:4000/api/ventas_anuales?year=${anio}`);
+      const data = await response.json();
 
- 
- // Dibujar gráfico cuando cambien los datos
+      // Aplicar colores al pie chart
+      data.datasets[0].backgroundColor = [
+        "#4BC0C0", "#FF6384", "#FFCE56", "#9966FF",
+        "#FF9F40", "#36A2EB", "#8E44AD", "#2ECC71",
+        "#da61ffff", "#3498DB", "#F1C40F", "#D35400"
+      ];
+
+      // Guardar tabla
+      setTablaMetodos(data.tablaMetodos);
+
+      // Guardar datos para gráfica
+      setDatosChart(data);
+
+    } catch (error) {
+      console.error("Error al obtener reporte anual:", error);
+    }
+  };
+
+  // =============================
+  //   DIBUJAR GRÁFICA PIE
+  // =============================
   useEffect(() => {
     if (!datosChart) return;
 
+    // Asegurar que existe solo un dataset
+    if (datosChart.datasets.length > 1) {
+      datosChart.datasets = [datosChart.datasets[0]];
+    }
+
     const ctx = document.getElementById("chartAnual");
-    if (Chart.getChart("chartAnual")) Chart.getChart("chartAnual").destroy();
+    const oldChart = Chart.getChart("chartAnual");
+    if (oldChart) oldChart.destroy();
 
     new Chart(ctx, {
-      type: "line",
+      type: "pie",
       data: datosChart,
       options: {
         responsive: true,
-        plugins: { legend: { position: "bottom" } },
-      },
+        plugins: {
+          legend: {
+            position: "right",
+            labels: {
+              usePointStyle: true,
+              pointStyle: "circle"
+            }
+          }
+        }
+      }
     });
   }, [datosChart]);
 
@@ -76,17 +103,16 @@ const actualizarReporte = async () => {
         </div>
       </label>
 
-
-
       {/* Título */}
       <div>
         <h1 className="TituloAnual">Reporte de Ganancias (Anual)</h1>
         <hr className="hranual" />
       </div>
+
       {/* Botón calendario */}
       <div className="dia-container" id="btn-anual" onClick={toggleCalendario}>
         <span className="dia-texto">Año</span>
-        <i className="fa-solid fa-calendar-days fa-4x"></i> {/* el fa-4x hace el icono mas grande*/}
+        <i className="fa-solid fa-calendar-days fa-4x"></i>
       </div>
 
       {/* Selector de año */}
@@ -102,8 +128,6 @@ const actualizarReporte = async () => {
           <button className="actuanual" id="btn-refresh-anual" title="Actualizar" onClick={actualizarReporte}>
             Actualizar
           </button>
-
-
         </div>
       )}
 
@@ -111,10 +135,34 @@ const actualizarReporte = async () => {
       <div className="chart-card anual">
         <canvas id="chartAnual"></canvas>
       </div>
+
+
+      {tablaMetodos && (
+       <table className="tabla-metodos">
+  <thead>
+    <tr>
+      <th>Mes</th>
+      <th>Ganancia Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {Object.entries(tablaMetodos).map(([mes, valores]) => {
+      const total = Number(valores.total) || 0; // asegurar entero
+
+      return (
+        <tr key={mes}>
+          <td>{mes}</td>
+          <td><b>{Math.round(total).toLocaleString()}</b></td>
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
+
+      )}
     </div>
   );
 }
-
-
 
 export default ReporteAnual;

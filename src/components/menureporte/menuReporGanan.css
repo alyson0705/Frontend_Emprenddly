@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 
-.reporte_ganancias{
-  background: #b9a8c4 !important;
+.anual{
+  background: linear-gradient(to bottom, #cadbec, #f4e1b6) !important;  /* 🔥 FONDO DEGRADADO NUEVO */
   width: 100%;
   min-height: 100vh;
   padding-top: 80px;
@@ -16,7 +16,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 15px;
-  background: linear-gradient(to right, #F0C2BE, #6C557A);
+  background: linear-gradient(to right, #cadbec, #f4e1b6);
   height: 65px;
   box-shadow: 0 3px 5px #76357c;
   border-bottom-left-radius: 15px;
@@ -31,7 +31,7 @@
   height: 90px;
   margin-left:  310px;
   padding: 0;
-  object-fit: contain;  /* mantiene proporción de la imagen */
+  object-fit: contain;
 }
 
 /* Menú lateral */
@@ -94,7 +94,7 @@ ul li a i {
   display: none;
 }
 
-/* Botón de líneas (hamburger) */
+/* Botón de líneas */
 .Lineas {
   position: absolute;
   height: 30px;
@@ -138,7 +138,7 @@ ul li a i {
   transform: translate(-50%, -50%);
 }
 
-/* Animación cuando se activa */
+/* Animación */
 .Lineas.active .top_line {
   left: 2px;
   top: 14px;
@@ -157,6 +157,7 @@ ul li a i {
   opacity: 0;
   transform:translateX(20px)
 }
+
 /* Contenido */
 .TituloRepor {
   text-align: center;

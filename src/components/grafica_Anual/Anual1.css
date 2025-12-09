@@ -1,218 +1,312 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
 }
 
-.html, body {
-  background: #b9a8c4!important; /* Fuerza fondo blanco */
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100%;
+html, body {
+ margin: 0;
+ padding: 0;
+ width: 100%;
+ min-height: 100vh;
 }
 
-.barra-superioranual{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 15px;
-  background: linear-gradient(to right, #d197d3, #E6D6AD);
-  height: 65px;
-  box-shadow: 0 3px 5px #809fe1;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 55px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 80%;
+/* ESTRUCTURA Y FONDO */
+body {
+ font-family: 'Arial', sans-serif;
+ background: linear-gradient(to bottom, #CADBEC, #F4E1B6); 
+ background-attachment: fixed;
+ background-size: cover;
+ min-height: 100vh;
+ display: block;
+}
+
+.anual {
+ width: 100%;
+ max-width: 1100px;
+ margin: 0 auto;
+ padding-top: 20px;
+ text-align: center;
+}
+
+/* BARRA SUPERIOR */
+.barra-superioranual {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 8px 15px;
+ background: linear-gradient(to right, #CADBEC, #E5DED3); 
+ height: 65px;
+ 
+ box-shadow: 0 3px 5px #B6A999; 
+ border-bottom-left-radius: 15px;
+ border-bottom-right-radius: 55px;
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ z-index: 10;
 }
 
 .logo-2anu {
-  height: 90px;
-  margin-left:  310px;
-  padding: 0;
-  object-fit: contain;  /* mantiene proporción de la imagen */
+ height: 60px; 
+ margin-left: 20px;
+ object-fit: contain;
+}
+
+/* MENÚ LATERAL (Se usa el estilo de menú fijo del CSS original) */
+.MenuRegistro2 {
+ height: 100vh;
+ width: 200px;
+ position: fixed;
+ top: 0px;
+ left: 0;
+ background: linear-gradient(to bottom, #F5F6F7, #CADBEC, #B6A999);
+ transition: 0.5s ease;
+ transform: translateX(-200px);
+ font-size: 20px;
+ z-index: 20;
+}
+
+.menu2 {
+ color: #33348a; 
+ font-family: 'Times New Roman', Times, serif;
+ text-align: right;
+ padding: 10px 0;
+ padding-right: 10px;
+ pointer-events: none;
+ font-size: 50px;
+}
+
+.ul2 li {
+ list-style: none;
+}
+
+.ul2 li a {
+ color: #33348a; 
+ font-weight: 500;
+ padding: 9px 0;
+ display: flex;
+ text-transform: capitalize;
+ text-decoration: none;
+ transition: 0.2s ease-out;
+ gap: 10px;
+ font-size: 20px;
+}
+
+.ul2 li:hover a {
+ color: white;
+ background-color: #B6A999; 
+}
+
+.ul2 li a i {
+ color: #33348a;
+ min-width: 25px;
+ text-align: center;
+}
+
+/* LÍNEAS HAMBURGUESA */
+.lineas-check {
+ display: none;
+}
+
+.Lineas2 {
+ position: absolute;
+ height: 30px;
+ width: 30px;
+ top: 20px;
+ left: 15px;
+ z-index: 21;
+ cursor: pointer;
+ border-radius: 5px;
+ background-color: #CADBEC; 
+ box-shadow: 0 0 10px #F5F6F7; 
+}
+
+.Lineas2 .common {
+ position: absolute;
+ height: 2px;
+ width: 20px;
+ background-color: #33348a; 
+ border-radius: 50px;
+ transition: 0.3s ease;
+}
+
+.Lineas2 .top_line {
+ top: 30%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
+
+.Lineas2 .middle_line {
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
 }
 
 
-.MenuRegistro2{
-  height: 100vh;
-  width: 200px;
-  position: fixed;
-  top: 0px;
-  left: 0;
-  background: linear-gradient(to bottom, #ffffff,#809fe1 , #33348a);
-  transition: 0.5s ease;
-  transform: translateX(-200px);
-  font-size: 20px;
+.Lineas2 .bottom_line {
+ top: 70%;
+ left: 50%;
+ transform: translate(-50%, -50%);
 }
 
-.menu2{
-  color: #33348a;
-  font-family: 'Times New Roman', Times, serif;
-  text-align: right;
-  padding: 10px 0;
-  padding-right: 10px;
-  pointer-events: none;
-  font-size: 50px;
+input:checked ~ .Lineas2 .top_line {
+ left: 2px;
+ top: 14px;
+ width: 25px;
+ transform: rotate(45deg);
 }
 
-.ul2 li{
-    list-style: none;
-}
-
-.ul2 li a{
-    color: #33348a;
-    font-weight: 500;
-    padding: 9px 0;
-    display: flex;
-    text-transform: capitalize;
-    text-decoration: none;
-    transition: 0.2s ease-out;
-    gap: 10px;
-    font-size: 20px;
-}
-
-.ul2 li:hover a{
-    color: rgb(235, 231, 231);
-    background-color: #809fe1;
-}
-
-.ul2 li a i{
-    color: #33348a;
-    min-width: 25px;
-    text-align: center;
+input:checked ~ .Lineas2 .bottom_line {
+ left: 2px;
+ top: 14px;
+ width: 25px;
+ transform: rotate(-45deg);
 }
 
 
-.lineas-check{
-    display: none;
+input:checked ~ .Lineas2 .middle_line {
+ opacity: 0;
+ transform: translateX(20px);
 }
 
-
-.Lineas2{
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    top: 20px;
-    left: 15px;
-    z-index: 2;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: #809fe1;
-    box-shadow: 0 0 10px #ffffff;
+input:checked ~ .MenuRegistro2 {
+ transform: translateX(0);
+ box-shadow: 0 0 15px #B6A999; 
 }
 
-.Lineas2 .common{
-    position: absolute;
-    height: 2px;
-    width: 20px;
-    background-color: #33348a;
-    border-radius: 50px;
-    transition: 0.3s ease;
+/* TÍTULO Y SEPARADOR */
+.TituloAnual {
+ text-align: center;
+ font-size: 40px;
+ font-weight: 700; 
+ color: #F5F6F7; 
+ margin-top: 80px;
+ margin-bottom: 20px;
+ text-shadow: 1px 1px 2px, #B6A999 0 0 1em, #B6A999 0 0 0.2em;
 }
 
-.Lineas2 .top_line{
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+.hranual {
+ width: 60%;
+ margin: 10px auto;
+ border: none;
+ border-top: 2px solid #B6A999; 
+ margin-bottom: 20px;
 }
 
-.Lineas2 .middle_line{
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+/* BOTÓN/CONTENEDOR DEL CALENDARIO (estructura mejorada) */
+.dia-container {
+ background: linear-gradient(to right, #CADBEC, #F4E1B6); 
+ width: 220px;
+ margin: 25px auto;
+ padding: 15px;
+ border-radius: 12px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 15px;
+ cursor: pointer;
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+ transition: 0.3s;
 }
 
-
-.Lineas2 .bottom_line{
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+.dia-container:hover {
+ transform: scale(1.05);
 }
 
-input:checked ~ .Lineas2 .top_line{
-    left: 2px;
-    top: 14px;
-    width: 25px;
-    transform: rotate(45deg);
+.dia-texto {
+ font-size: 20px;
+ font-weight: bold;
+ color: #33348a; 
 }
 
-input:checked ~ .Lineas2 .bottom_line{
-    left: 2px;
-    top: 14px;
-    width: 25px;
-    transform: rotate(-45deg);
+/* SELECTOR DE AÑO  */
+.calendario-containeranual {
+ margin: 10px auto;
+ background-color: #E5DED3; 
+ padding: 20px;
+ width: 260px;
+ border-radius: 10px;
+ box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
 }
 
-
-input:checked ~ .Lineas2 .middle_line{
-    opacity: 0;
-    transform: translateX(20px);
+.año {
+ /* Input de año */
+ padding: 10px;
+ border-radius: 8px;
+ border: 1px solid #B6A999; 
+ text-align: center;
+ font-size: 18px;
+ background-color: #F5F6F7; 
+ color: #33348a; 
 }
 
-input:checked ~.MenuRegistro2{
-    transform: translateX(0);
-    box-shadow: 0 0 15px #4b4a4a;
-}
-/*DEMAS*/
-
-.TituloAnual{
-    text-align: center;
-    font-size: 40px;
-    font-weight: 700;
-    color: #f0c2be;
-    margin-top: 80px;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px, #6C557A 0 0 1em, #6C557A 0 0 0.2em;
+.año::placeholder {
+ color: #B6A999; 
+ font-size: 18px;
 }
 
-.hranual{
-    border: none;
-    border-top: 1px solid #411e02;
-    margin: 10px 0;
-    height: 2px;
-    margin-bottom: 20px;
+.actuanual {
+ background-color: #B6A999; 
+ color: white;
+ padding: 10px;
+ border: none;
+ border-radius: 8px;
+ cursor: pointer;
+ font-size: 16px;
+ transition: 0.3s;
 }
 
-.dia-container{
-    text-align: center;
-}
-.dia-texto{
-    text-align: center;
-    font-size: 35px;
-    font-weight: 600;
-    color: #f0c2be;
-    margin-top: 80px;
-    margin-bottom: 20px;
+.actuanual:hover {
+ background-color: #6C557A; 
 }
 
-.actuanual{
-    height: 50px;
-    font-size: 25px;
-    width:40%;
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 125px;
-    background-color: #E6D6AD;
-    color: #76357c; 
-    border-radius: 5px;
-    box-shadow: 5px 3px 5px #6C557A; 
-}
-.año{
-    height: 55px;
-    width:70%;
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 55px;
-    background-color: #E6D6AD;
-    border-radius: 5px;
-    box-shadow: 5px 3px 5px #6C557A; 
+/* GRÁFICA  */
+.chart-card {
+ background-color: #FFFFFF;
+ width: 90%;
+ margin: 20px auto;
+ padding: 25px;
+ border-radius: 15px;
+ min-height: 420px;
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.año::placeholder{
-    color: #000000;
-    font-size: 35px;
+/* TABLA (estructura mejorada) */
+.tabla-metodos {
+ width: 80%;
+ margin: 20px auto;
+ border-collapse: collapse;
+ background: #FFFFFF;
+ box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+ border-radius: 10px;
+ overflow: hidden;
 }
 
+.tabla-metodos th {
+ /* Encabezado de tabla */
+ background-color: #B6A999; 
+ color: white;
+ padding: 12px;
+ font-size: 18px;
+}
+
+.tabla-metodos td {
+ padding: 12px;
+ font-size: 16px;
+ border-bottom: 1px solid #ddd;
+}
+
+.tabla-metodos tr:nth-child(even) {
+ background-color: #E5DED3;
+}
+
+.tabla-metodos tr:hover {
+ background-color: #CADBEC; 
+ color: #33348a;
+}
