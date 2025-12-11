@@ -20,11 +20,12 @@ body {
  background-size: cover;
  min-height: 100vh;
  display: block;
+ padding-top: 80px;
 }
 
 .anual {
  width: 100%;
- max-width: 1100px;
+ max-width: 500px;
  margin: 0 auto;
  padding-top: 20px;
  text-align: center;
@@ -38,7 +39,6 @@ body {
  padding: 8px 15px;
  background: linear-gradient(to right, #CADBEC, #E5DED3); 
  height: 65px;
- 
  box-shadow: 0 3px 5px #B6A999; 
  border-bottom-left-radius: 15px;
  border-bottom-right-radius: 55px;
@@ -181,7 +181,7 @@ input:checked ~ .MenuRegistro2 {
 .TituloAnual {
  text-align: center;
  font-size: 40px;
- font-weight: 700; 
+ font-weight: 400; 
  color: #F5F6F7; 
  margin-top: 80px;
  margin-bottom: 20px;
@@ -199,8 +199,8 @@ input:checked ~ .MenuRegistro2 {
 /* BOTÓN/CONTENEDOR DEL CALENDARIO (estructura mejorada) */
 .dia-container {
  background: linear-gradient(to right, #CADBEC, #F4E1B6); 
- width: 220px;
- margin: 25px auto;
+ width: 100px !important;
+ margin: 15px auto;
  padding: 15px;
  border-radius: 12px;
  display: flex;
@@ -224,10 +224,10 @@ input:checked ~ .MenuRegistro2 {
 
 /* SELECTOR DE AÑO  */
 .calendario-containeranual {
- margin: 10px auto;
+ margin: 15px auto;
  background-color: #E5DED3; 
  padding: 20px;
- width: 260px;
+ width: 160px !important;
  border-radius: 10px;
  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
  display: flex;
@@ -269,8 +269,8 @@ input:checked ~ .MenuRegistro2 {
 /* GRÁFICA  */
 .chart-card {
  background-color: #FFFFFF;
- width: 90%;
- margin: 20px auto;
+ width: 100% !important;
+ margin: 15px auto;
  padding: 25px;
  border-radius: 15px;
  min-height: 420px;
@@ -279,8 +279,8 @@ input:checked ~ .MenuRegistro2 {
 
 /* TABLA (estructura mejorada) */
 .tabla-metodos {
- width: 80%;
- margin: 20px auto;
+ width: 100% !important;
+ margin: 15px auto;
  border-collapse: collapse;
  background: #FFFFFF;
  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);

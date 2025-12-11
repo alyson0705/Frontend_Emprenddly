@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Importa Link
-import "./registro.css"; // Importa tus estilos
+import { Link } from "react-router-dom"; 
+import "./registro.css"; 
 import LogoEmpren from "../../assets/Logo_Empren.png";
 
 
@@ -54,7 +54,6 @@ function RegistroGastos() {
             <li><a href="#"><i className="fas fa-cart-plus"></i>Registro De Ventas</a></li>
             <li><a href="http://localhost:5173/reporteventas"><i className="fas fa-chart-line"></i>Reporte De Ventas</a></li>
             <li><a href="http://localhost:5173/registrogastos"><i className="fas fa-wallet"></i>Registro De Gastos</a></li>
-            <li><a href="http://localhost:5173/reportegastos"><i className="fas fa-file-invoice-dollar"></i>Reporte De Gastos</a></li>
             <li><a href="http://localhost:5173/menureporte"><i className="fas fa-dollar-sign"></i>Reporte De Ganancias</a></li>
             <li><a href="http://localhost:5173/ajustes"><i className="fas fa-cogs"></i>Ajustes</a></li>
           </ul>

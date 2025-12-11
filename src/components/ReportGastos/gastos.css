@@ -1,7 +1,7 @@
 /* ===== Estilos generales ===== */
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(165deg, #f0c2be, #f0e1bc);
+  background: linear-gradient(165deg, #cadbec, #f4e1b6);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  color: #6a1b9a;
+  color: #f5f6f7;
   margin-bottom: 20px;
   font-size: 28px;
   text-align: center;
