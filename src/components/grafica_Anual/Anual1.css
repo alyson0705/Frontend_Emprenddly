@@ -1,295 +1,256 @@
-
+/* RESET */
 * {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
- margin: 0;
- padding: 0;
- width: 100%;
- min-height: 100vh;
+  width: 100%;
+  min-height: 100vh;
 }
 
-/* ESTRUCTURA Y FONDO */
+/* FONDO */
 body {
- font-family: 'Arial', sans-serif;
- background: linear-gradient(to bottom, #CADBEC, #F4E1B6); 
- background-attachment: fixed;
- background-size: cover;
- min-height: 100vh;
- display: block;
- padding-top: 80px;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #CADBEC, #F4E1B6);
+  background-attachment: fixed;
+  background-size: cover;
+  padding-top: 80px;
 }
 
+/* CONTENEDOR PRINCIPAL */
 .anual {
- width: 100%;
- max-width: 500px;
- margin: 0 auto;
- padding-top: 20px;
- text-align: center;
+  position: relative;
+  width: 100%;
+  max-width: 900px;   /* ANTES 500px — ahora se ajusta bien */
+  margin: 0 auto;
+  padding-top: 20px;
+  text-align: center;
+  z-index: 2;
 }
 
 /* BARRA SUPERIOR */
 .barra-superioranual {
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 8px 15px;
- background: linear-gradient(to right, #CADBEC, #E5DED3); 
- height: 65px;
- box-shadow: 0 3px 5px #B6A999; 
- border-bottom-left-radius: 15px;
- border-bottom-right-radius: 55px;
- position: fixed;
- top: 0;
- left: 0;
- width: 100%;
- z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  background: linear-gradient(to right, #CADBEC, #E5DED3);
+  height: 65px;
+  box-shadow: 0 3px 5px #B6A999;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 55px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 .logo-2anu {
- height: 60px; 
- margin-left: 20px;
- object-fit: contain;
+  height: 60px;
+  margin-left: 20px;
+  object-fit: contain;
 }
 
-/* MENÚ LATERAL (Se usa el estilo de menú fijo del CSS original) */
+/* MENÚ */
 .MenuRegistro2 {
- height: 100vh;
- width: 200px;
- position: fixed;
- top: 0px;
- left: 0;
- background: linear-gradient(to bottom, #F5F6F7, #CADBEC, #B6A999);
- transition: 0.5s ease;
- transform: translateX(-200px);
- font-size: 20px;
- z-index: 20;
+  height: 100vh;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to bottom, #F5F6F7, #CADBEC, #B6A999);
+  transition: 0.5s ease;
+  transform: translateX(-200px);
+  z-index: 20;
 }
 
 .menu2 {
- color: #33348a; 
- font-family: 'Times New Roman', Times, serif;
- text-align: right;
- padding: 10px 0;
- padding-right: 10px;
- pointer-events: none;
- font-size: 50px;
+  color: #33348a;
+  text-align: right;
+  padding: 10px 10px;
+  pointer-events: none;
+  font-size: 50px;
 }
 
 .ul2 li {
- list-style: none;
+  list-style: none;
 }
 
 .ul2 li a {
- color: #33348a; 
- font-weight: 500;
- padding: 9px 0;
- display: flex;
- text-transform: capitalize;
- text-decoration: none;
- transition: 0.2s ease-out;
- gap: 10px;
- font-size: 20px;
+  color: #33348a;
+  padding: 9px 0;
+  display: flex;
+  text-decoration: none;
+  gap: 10px;
+  font-size: 20px;
 }
 
 .ul2 li:hover a {
- color: white;
- background-color: #B6A999; 
+  color: white;
+  background-color: #B6A999;
 }
 
 .ul2 li a i {
- color: #33348a;
- min-width: 25px;
- text-align: center;
+  color: #33348a;
+  min-width: 25px;
+  text-align: center;
 }
 
-/* LÍNEAS HAMBURGUESA */
+/* BOTÓN HAMBURGUESA */
 .lineas-check {
- display: none;
+  display: none;
 }
 
 .Lineas2 {
- position: absolute;
- height: 30px;
- width: 30px;
- top: 20px;
- left: 15px;
- z-index: 21;
- cursor: pointer;
- border-radius: 5px;
- background-color: #CADBEC; 
- box-shadow: 0 0 10px #F5F6F7; 
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 20px;
+  left: 15px;
+  background-color: #CADBEC;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 21;
 }
 
 .Lineas2 .common {
- position: absolute;
- height: 2px;
- width: 20px;
- background-color: #33348a; 
- border-radius: 50px;
- transition: 0.3s ease;
+  position: absolute;
+  height: 2px;
+  width: 20px;
+  background-color: #33348a;
+  border-radius: 50px;
+  transition: 0.3s ease;
 }
 
-.Lineas2 .top_line {
- top: 30%;
- left: 50%;
- transform: translate(-50%, -50%);
-}
+.Lineas2 .top_line { top: 30%; left: 50%; transform: translate(-50%, -50%); }
+.Lineas2 .middle_line { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.Lineas2 .bottom_line { top: 70%; left: 50%; transform: translate(-50%, -50%); }
 
-.Lineas2 .middle_line {
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
-}
+input:checked ~ .Lineas2 .top_line { transform: rotate(45deg); width: 25px; top: 14px; left: 2px; }
+input:checked ~ .Lineas2 .bottom_line { transform: rotate(-45deg); width: 25px; top: 14px; left: 2px; }
+input:checked ~ .Lineas2 .middle_line { opacity: 0; transform: translateX(20px); }
+input:checked ~ .MenuRegistro2 { transform: translateX(0); }
 
-
-.Lineas2 .bottom_line {
- top: 70%;
- left: 50%;
- transform: translate(-50%, -50%);
-}
-
-input:checked ~ .Lineas2 .top_line {
- left: 2px;
- top: 14px;
- width: 25px;
- transform: rotate(45deg);
-}
-
-input:checked ~ .Lineas2 .bottom_line {
- left: 2px;
- top: 14px;
- width: 25px;
- transform: rotate(-45deg);
-}
-
-
-input:checked ~ .Lineas2 .middle_line {
- opacity: 0;
- transform: translateX(20px);
-}
-
-input:checked ~ .MenuRegistro2 {
- transform: translateX(0);
- box-shadow: 0 0 15px #B6A999; 
-}
-
-/* TÍTULO Y SEPARADOR */
+/* TÍTULO */
 .TituloAnual {
- text-align: center;
- font-size: 40px;
- font-weight: 400; 
- color: #F5F6F7; 
- margin-top: 80px;
- margin-bottom: 20px;
- text-shadow: 1px 1px 2px, #B6A999 0 0 1em, #B6A999 0 0 0.2em;
+  position: relative;
+  font-size: 40px;
+  font-weight: 400;
+  color: #F5F6F7;
+  margin-top: 80px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px, #B6A999 0 0 1em, #B6A999 0 0 0.2em;
+  z-index: 2;
 }
 
 .hranual {
- width: 60%;
- margin: 10px auto;
- border: none;
- border-top: 2px solid #B6A999; 
- margin-bottom: 20px;
+  width: 60%;
+  margin: 10px auto 20px auto;
+  border: none;
+  border-top: 2px solid #B6A999;
 }
 
-/* BOTÓN/CONTENEDOR DEL CALENDARIO (estructura mejorada) */
-.dia-container {
- background: linear-gradient(to right, #CADBEC, #F4E1B6); 
- width: 100px !important;
- margin: 15px auto;
- padding: 15px;
- border-radius: 12px;
- display: flex;
- justify-content: center;
- align-items: center;
- gap: 15px;
- cursor: pointer;
- box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
- transition: 0.3s;
-}
-
-.dia-container:hover {
- transform: scale(1.05);
-}
-
-.dia-texto {
- font-size: 20px;
- font-weight: bold;
- color: #33348a; 
-}
-
-/* SELECTOR DE AÑO  */
+/* SELECTOR AÑO */
 .calendario-containeranual {
- margin: 15px auto;
- background-color: #E5DED3; 
- padding: 20px;
- width: 160px !important;
- border-radius: 10px;
- box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
- display: flex;
- flex-direction: column;
- gap: 10px;
+  background-color: #E5DED3;
+  padding: 20px;
+  width: 100% !important;          /* ANTES: 160px */
+  max-width: 300px;
+  margin: 15px auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
 
+/* Input año */
 .año {
- /* Input de año */
- padding: 10px;
- border-radius: 8px;
- border: 1px solid #B6A999; 
- text-align: center;
- font-size: 18px;
- background-color: #F5F6F7; 
- color: #33348a; 
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #B6A999;
+  font-size: 18px;
+  background-color: #F5F6F7;
+  color: #33348a;
+  text-align: center;
 }
 
-.año::placeholder {
- color: #B6A999; 
- font-size: 18px;
-}
-
+/* Botón actualizar */
 .actuanual {
- background-color: #B6A999; 
- color: white;
- padding: 10px;
- border: none;
- border-radius: 8px;
- cursor: pointer;
- font-size: 16px;
- transition: 0.3s;
+  background-color: #B6A999;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .3s;
+}
+.actuanual:hover { background-color: #6C557A; }
+
+/* Botón Ganancia Neta */
+.Boton_gannacia_neta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
 }
 
-.actuanual:hover {
- background-color: #6C557A; 
+.Boton_gannacia_neta button {
+  background-color: #B6A999;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
 
-/* GRÁFICA  */
+.Boton_gannacia_neta button:hover {
+  background-color: #8c7b6a;
+}
+
+/* TARJETA GANANCIA NETA */
+.ganancia-neta-card {
+  width: 90%;
+  max-width: 500px;
+  background: linear-gradient(to bottom, #ffffff, #f3e7ce);
+  margin: 15px auto;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  color: #33348a;
+}
+
+.ganancia-neta-card h3 {
+  color: #6c4d72;
+  font-size: 24px;
+}
+
+/* GRÁFICA */
 .chart-card {
- background-color: #FFFFFF;
- width: 100% !important;
- margin: 15px auto;
- padding: 25px;
- border-radius: 15px;
- min-height: 420px;
- box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  width: 100%;
+  margin: 15px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  min-height: 420px;
 }
 
-/* TABLA (estructura mejorada) */
+/* TABLA */
 .tabla-metodos {
- width: 100% !important;
- margin: 15px auto;
- border-collapse: collapse;
- background: #FFFFFF;
- box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
- border-radius: 10px;
- overflow: hidden;
+  width: 100%;
+  background: #ffffff;
+  margin: 15px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  border-collapse: collapse;
 }
+
 
 .tabla-metodos th {
- /* Encabezado de tabla */
  background-color: #B6A999; 
  color: white;
  padding: 12px;
@@ -300,13 +261,60 @@ input:checked ~ .MenuRegistro2 {
  padding: 12px;
  font-size: 16px;
  border-bottom: 1px solid #ddd;
+ color: #333;
 }
 
 .tabla-metodos tr:nth-child(even) {
- background-color: #E5DED3;
+ background-color: #E5DED3; /* Bone */
 }
 
 .tabla-metodos tr:hover {
  background-color: #CADBEC; 
- color: #33348a;
+ color: #6C557A;
+}
+
+/* =========================
+   TABLA RESUMEN
+========================= */
+.tabla-resumen {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tabla-resumen th {
+  background-color: #B6A999;
+  color: white;
+  padding: 12px;
+  font-size: 18px;
+}
+
+.tabla-resumen td {
+  padding: 12px;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-resumen tr:nth-child(even) {
+  background-color: #E5DED3;
+}
+
+/* =========================
+   COLORES DE MONTOS
+========================= */
+.positivo {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.negativo {
+  color: #c62828;
+  font-weight: bold;
+}
+
+.fila-neta {
+  background-color: #CADBEC;
+  font-size: 18px;
 }

@@ -1,42 +1,40 @@
+/* ===== Root ===== */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(165deg, #CADBEC, #F4E1B6);
 }
 
+/* ===== Logos (si los usas) ===== */
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  height: 5em;
+  padding: 1em;
+  transition: filter 0.3s ease;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 1em #B6A999);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
+/* ===== Cards genéricas ===== */
 .card {
-  padding: 2em;
+  padding: 1.5em;
+  border-radius: 15px;
+  background-color: #E5DED3;
+  box-shadow: 0 6px 15px rgba(182, 169, 153, 0.4);
 }
 
+/* ===== Textos secundarios ===== */
 .read-the-docs {
-  color: #888;
+  color: #131213;
+  opacity: 0.6;
+}
+
+/* ===== Eliminar animaciones innecesarias ===== */
+@media (prefers-reduced-motion: no-preference) {
+  .logo {
+    animation: none;
+  }
 }

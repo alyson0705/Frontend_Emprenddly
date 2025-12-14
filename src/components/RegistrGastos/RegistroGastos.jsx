@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
-import "./registro.css"; 
+import { Link } from "react-router-dom";
+import "./registro.css";
 import LogoEmpren from "../../assets/Logo_Empren.png";
-
 
 function RegistroGastos() {
   const [valor, setValor] = useState("");
   const [tipoGasto, setTipoGasto] = useState("");
+  const [fecha, setFecha] = useState(
+    new Date().toISOString().split("T")[0]
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,26 +17,34 @@ function RegistroGastos() {
       const res = await fetch("http://localhost:4000/registrogastos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ valor, tipo_gasto: tipoGasto }),
+        body: JSON.stringify({
+          valor,
+          tipo_gasto: tipoGasto,
+          fecha
+        }),
       });
 
       const data = await res.json();
+
       if (res.ok) {
         alert("✅ Gasto registrado con éxito");
         setValor("");
         setTipoGasto("");
+        setFecha(new Date().toISOString().split("T")[0]);
       } else {
         alert("⚠️ Error: " + data.error);
       }
     } catch (error) {
       console.error("❌ Error en frontend:", error);
+      alert("❌ Error de conexión con el servidor");
     }
   };
+
   return (
     <div>
       {/* Barra superior */}
       <header className="barra-superior">
-        <img src={LogoEmpren} alt="Logo" className="logoem"/>
+        <img src={LogoEmpren} alt="Logo" className="logoem" />
       </header>
 
       {/* Menú lateral */}
@@ -47,19 +57,18 @@ function RegistroGastos() {
         </div>
 
         <div className="Menu">
-          <h1 className="menu_titulo"> Menu </h1>
+          <h1 className="menu_titulo">Menu</h1>
           <ul>
-            <li><a href="http://localhost:5173/usuarios"><i className="fas fa-user"></i>Usuarios</a></li>
-            <li><a href="http://localhost:5173/registroinventario"><i className="fas fa-clipboard-list"></i>Inventario</a></li>
-            <li><a href="#"><i className="fas fa-cart-plus"></i>Registro De Ventas</a></li>
-            <li><a href="http://localhost:5173/reporteventas"><i className="fas fa-chart-line"></i>Reporte De Ventas</a></li>
-            <li><a href="http://localhost:5173/registrogastos"><i className="fas fa-wallet"></i>Registro De Gastos</a></li>
-            <li><a href="http://localhost:5173/menureporte"><i className="fas fa-dollar-sign"></i>Reporte De Ganancias</a></li>
-            <li><a href="http://localhost:5173/ajustes"><i className="fas fa-cogs"></i>Ajustes</a></li>
+            <li><a href="http://localhost:5173/usuarios">Usuarios</a></li>
+            <li><a href="http://localhost:5173/registroinventario">Inventario</a></li>
+            <li><a href="#">Registro De Ventas</a></li>
+            <li><a href="http://localhost:5173/reporteventas">Reporte De Ventas</a></li>
+            <li><a href="http://localhost:5173/reportegastos">Reporte De Gastos</a></li>
+            <li><a href="http://localhost:5173/menureporte">Reporte De Ganancias</a></li>
+            <li><a href="http://localhost:5173/ajustes">Ajustes</a></li>
           </ul>
         </div>
       </label>
-
 
       {/* Contenido principal */}
       <main className="container">
@@ -67,19 +76,28 @@ function RegistroGastos() {
         <hr />
 
         <form onSubmit={handleSubmit}>
-          <label htmlFor="valor">Ingrese valor del gasto:</label>
+          <label>Fecha del gasto:</label>
+          <input
+            type="date"
+            required
+            value={fecha}
+            onChange={(e) => setFecha(e.target.value)}
+          />
+
+          <hr />
+
+          <label>Ingrese valor del gasto:</label>
           <input
             type="number"
-            id="valor"
-            name="valor"
             min="101"
             required
             value={valor}
             onChange={(e) => setValor(e.target.value)}
           />
-          <hr />
-          <div className="container2">
 
+          <hr />
+
+          <div className="container2">
             <label>
               <input
                 type="radio"
@@ -87,11 +105,14 @@ function RegistroGastos() {
                 value="produccion"
                 checked={tipoGasto === "produccion"}
                 onChange={(e) => setTipoGasto(e.target.value)}
+                required
               />
               Costos de producción
             </label>
+
             <hr />
-              <label>
+
+            <label>
               <input
                 type="radio"
                 name="tipo_gasto"
@@ -101,7 +122,6 @@ function RegistroGastos() {
               />
               Costos logísticos
             </label>
-            <hr />
           </div>
 
           <button type="submit">Registrar Gasto</button>

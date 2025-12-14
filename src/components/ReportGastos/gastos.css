@@ -1,7 +1,7 @@
-/* ===== Estilos generales ===== */
+
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(165deg, #cadbec, #f4e1b6);
+  background: linear-gradient(165deg, #cadbec, #f4e1b6) !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,17 +10,17 @@ body {
 }
 
 h1 {
-  color: #f5f6f7;
+  color: #f5f6f7  ;
   margin-bottom: 20px;
   font-size: 28px;
   text-align: center;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 3px rgb(247, 240, 240) ;
 }
 
-/* ===== Contenedor principal ===== */
+
 .container {
-  background: linear-gradient(165deg, #f0e1bc, #f0c2be);
+  background: linear-gradient(165deg, #cadbec, #f4e1b6) !important;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
@@ -30,7 +30,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* ===== Etiquetas y formularios ===== */
 label {
   font-weight: bold;
   color: #131213;
@@ -40,15 +39,17 @@ input[type="date"] {
   margin: 15px 0;
   padding: 8px;
   border-radius: 8px;
-  border: 3px solid #9207f5;
+  border: 3px solid #6C557A;
   outline: none;
   transition: 0.3s;
+  background-color: #f5f3ee;
 }
 
 input[type="date"]:focus {
-  border-color: #9c27b0;
-  box-shadow: 0px 0px 6px rgba(156, 39, 176, 0.5);
+  border-color: #6C557A;
+  box-shadow: 0px 0px 6px rgba(74, 59, 82, 0.4);
 }
+
 
 .container2 {
   margin-top: 15px;
@@ -62,105 +63,71 @@ input[type="date"]:focus {
   cursor: pointer;
 }
 
-/* ===== Imagen logo ===== */
+/* =========================================================
+   ===== IMAGEN LOGO =====
+   ========================================================= */
 img {
   width: 120px;
   height: auto;
   margin-left: auto;
 }
 
-/* ===== Barra superior ===== */
+
 .barra-superior {
   display: flex;
   align-items: center;
   padding: 8px 8px;
-  background: linear-gradient(to right, #f0e1bc, #f0c2be);
+  background: linear-gradient(to right, #f0e1bc, #f0c2be) !important;
   height: 65px;
   box-shadow: 0 3px 5px rgba(26, 21, 21, 0.2);
-  border-bottom-left-radius: 25px;
+  border-bottom-left-radius: 25px;  
   border-bottom-right-radius: 55px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 900;
 }
 
-/* ===== Menú lateral ===== */
-.Menu {
+
+
+/* Contenedor general del menú */
+.menu-wrapper {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
-  height: 100%;
-  background: linear-gradient(to bottom, #f0e1bc, #f0c2be);
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-  transform: translateX(-100%); /* 🔹 Oculto por defecto */
-  transition: transform 0.3s ease;
-  z-index: 1000;
+  z-index: 1100;
+  width: 100%;
+  height: 0;
 }
 
+/* Checkbox oculto pero funcional */
 .lineas-check {
-  display: none;
-}
-
-/* Activar menú al hacer clic */
-input:checked ~ .Menu {
-  transform: translateX(0);
-  box-shadow: 0 0 15px #6C557A;
-}
-
-/* Estilos lista menú */
-ul {
-  padding: 0;
-}
-
-ul li {
-  list-style: none;
-}
-
-ul li a {
-  color: #6C557A;
-  font-weight: 500;
-  padding: 9px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
-  text-decoration: none;
-  text-transform: capitalize;
-  transition: 0.2s ease-out;
-}
-
-ul li:hover a {
-  color: #f0c2be;
-  background-color: #6C557A;
-  padding-left: 10px;
-  border-radius: 8px;
-}
-
-ul li a i {
-  color: #6C557A;
-  min-width: 25px;
-  text-align: center;
-}
-
-.Lineas {
   position: absolute;
-  height: 30px;
-  width: 30px;
-  top: 20px;
-  left: 15px;
-  z-index: 1001;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Botón hamburguesa */
+.Lineas {
+  position: fixed;
+  height: 40px;
+  width: 40px;
+  top: 12px;
+  left: 12px;
+  z-index: 1200;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
   background-color: #E6D6AD;
-  box-shadow: 0 0 10px #6C557A;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 10px #6C557A;
 }
 
+/* Líneas del icono */
 .Lineas .common {
   position: absolute;
   height: 2px;
@@ -170,48 +137,98 @@ ul li a i {
   transition: 0.3s ease;
 }
 
-.Lineas .top_line {
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+.top_line { top: 30%; left: 50%; transform: translate(-50%, -50%); }
+.middle_line { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.bottom_line { top: 70%; left: 50%; transform: translate(-50%, -50%); }
+
+/* Menú lateral */
+.Menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(to bottom, #f0e1bc, #f0c2be);
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  transform: translateX(-110%);
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.2s;
+  z-index: 1150;
 }
 
-.Lineas .middle_line {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-
-.Lineas .bottom_line {
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-
-/* Animación del botón al abrir */
-input:checked ~ .Lineas .top_line {
+/* Animación al abrir */
+.lineas-check:checked ~ .Lineas .top_line {
   left: 2px;
   top: 14px;
   width: 25px;
   transform: rotate(45deg);
 }
 
-input:checked ~ .Lineas .bottom_line {
+.lineas-check:checked ~ .Lineas .bottom_line {
   left: 2px;
   top: 14px;
   width: 25px;
   transform: rotate(-45deg);
 }
 
-input:checked ~ .Lineas .middle_line {
+.lineas-check:checked ~ .Lineas .middle_line {
   opacity: 0;
   transform: translateX(20px);
 }
 
-/* ===== Botones ===== */
+/* Mostrar menú */
+.lineas-check:checked ~ .Menu {
+  transform: translateX(0);
+  box-shadow: 0 0 15px #6C557A;
+}
+
+/* Lista del menú */
+.Menu .menu_titulo {
+  color: #6C557A;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.Menu ul {
+  padding: 0;
+  margin: 0;
+}
+
+.Menu ul li {
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.Menu ul li a {
+  color: #6C557A;
+  font-weight: 500;
+  padding: 9px 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: 0.12s ease-out;
+}
+
+.Menu ul li:hover a {
+  color: #f0c2be;
+  background-color: #6C557A;
+  padding-left: 10px;
+  border-radius: 8px;
+}
+
+.Menu ul li a i {
+  color: #6C557A;
+  min-width: 25px;
+  text-align: center;
+}
+
+
 button {
-  background: #e1bee7;
-  color: #4a148c;
+  background: #f4e1b6 !important;
+  color: #f6f7f8 !important;
   border: none;
   padding: 10px 20px;
   border-radius: 10px;

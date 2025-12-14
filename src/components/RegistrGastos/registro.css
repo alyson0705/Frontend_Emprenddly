@@ -1,7 +1,7 @@
 /* ===== Estilos generales ===== */
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(165deg, #f0c2be, #f0e1bc);
+  background: linear-gradient(165deg, #CADBEC, #F4E1B6);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,20 +10,20 @@ body {
 }
 
 h1 {
-  color: #6a1b9a;
+  color: #CADBEC;
   margin-bottom: 20px;
   font-size: 28px;
   text-align: center;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px 3px rgb(250, 246, 246);
 }
 
 /* ===== Contenedor principal ===== */
 .container {
-  background: linear-gradient(165deg, #f0e1bc, #f0c2be);
+  background: linear-gradient(165deg, #F4E1B6, #CADBEC) !important ;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0px 6px 15px rgba(188, 57, 240, 0.747);
+  box-shadow: 0px 6px 15px rgba(202, 219, 236, 0.7);
   text-align: center;
   width: 90%;
   max-width: 500px;
@@ -40,20 +40,21 @@ input[type="number"] {
   margin: 15px 0;
   padding: 8px;
   border-radius: 8px;
-  border: 3px solid #9207f5;
+  border: 3px solid #CADBEC;
   outline: none;
   transition: 0.3s;
-
 }
-/* para quitar flechas del campo de ingresar valor  */
+
+/* quitar flechas del campo number */
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 input[type="number"]:focus {
-  border-color: #9c27b0;
-  box-shadow: 0px 0px 6px rgba(195, 18, 226, 0.5);
+  border-color: #F4E1B6;
+  box-shadow: 0px 0px 6px rgba(244, 225, 182, 0.8);
 }
 
 .container2 {
@@ -80,7 +81,7 @@ img {
   display: flex;
   align-items: center;
   padding: 8px 8px;
-  background: linear-gradient(to right, #f0e1bc, #f0c2be);
+  background: linear-gradient(to right, #F4E1B6, #CADBEC) !important ;
   height: 65px;
   box-shadow: 0 3px 5px rgba(26, 21, 21, 0.2);
   border-bottom-left-radius: 25px;
@@ -98,10 +99,10 @@ img {
   left: 0;
   width: 250px;
   height: 100%;
-  background: linear-gradient(to bottom, #f0e1bc, #f0c2be);
+  background: linear-gradient(to bottom, #F4E1B6, #CADBEC);
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-  transform: translateX(-100%); /* 🔹 Oculto por defecto */
+  transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 1000;
 }
@@ -110,10 +111,10 @@ img {
   display: none;
 }
 
-/* Activar menú al hacer clic */
+/* Activar menú */
 input:checked ~ .Menu {
   transform: translateX(0);
-  box-shadow: 0 0 15px #6C557A;
+  box-shadow: 0 0 15px #CADBEC;
 }
 
 /* Estilos lista menú */
@@ -126,7 +127,7 @@ ul li {
 }
 
 ul li a {
-  color: #6C557A;
+  color: #CADBEC;
   font-weight: 500;
   padding: 9px 0;
   display: flex;
@@ -139,18 +140,19 @@ ul li a {
 }
 
 ul li:hover a {
-  color: #f0c2be;
-  background-color: #6C557A;
+  color: #F4E1B6;
+  background-color: #CADBEC;
   padding-left: 10px;
   border-radius: 8px;
 }
 
 ul li a i {
-  color: #6C557A;
+  color: #CADBEC;
   min-width: 25px;
   text-align: center;
 }
 
+/* ===== Ícono menú ===== */
 .Lineas {
   position: absolute;
   height: 30px;
@@ -160,8 +162,8 @@ ul li a i {
   z-index: 1001;
   cursor: pointer;
   border-radius: 5px;
-  background-color: #E6D6AD;
-  box-shadow: 0 0 10px #6C557A;
+  background-color: #F4E1B6;
+  box-shadow: 0 0 10px #CADBEC;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -171,7 +173,7 @@ ul li a i {
   position: absolute;
   height: 2px;
   width: 20px;
-  background-color: #6C557A;
+  background-color: #CADBEC;
   border-radius: 50px;
   transition: 0.3s ease;
 }
@@ -194,7 +196,7 @@ ul li a i {
   transform: translate(-50%,-50%);
 }
 
-/* Animación del botón al abrir */
+/* Animación del botón */
 input:checked ~ .Lineas .top_line {
   left: 2px;
   top: 14px;
@@ -216,8 +218,8 @@ input:checked ~ .Lineas .middle_line {
 
 /* ===== Botones ===== */
 button {
-  background: #e1bee7;
-  color: #4a148c;
+  background: #CADBEC;
+  color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 10px;
@@ -227,6 +229,6 @@ button {
 }
 
 button:hover {
-  background: #f0c2be;
-  color: #b4e7f0;
+  background: #F4E1B6;
+  color: #CADBEC;
 }

@@ -6,54 +6,71 @@ import "./Anual1.css";
 function ReporteAnual() {
   const [mostrarCalendario, setMostrarCalendario] = useState(false);
   const [datosChart, setDatosChart] = useState(null);
-  const [tablaMetodos, setTablaMetodos] = useState(null);
+
+  const [mostrarGananciaNeta, setMostrarGananciaNeta] = useState(false);
+  const [totalGananciasAnuales, setTotalGananciasAnuales] = useState(0);
+  const [totalGastosAnuales, setTotalGastosAnuales] = useState(0);
+  const [gananciaNetaAnual, setGananciaNetaAnual] = useState(0);
 
   const toggleCalendario = () => setMostrarCalendario(!mostrarCalendario);
 
-  // =============================
-  //   OBTENER REPORTE DEL BACKEND
-  // =============================
   const actualizarReporte = async () => {
     const anio = document.getElementById("anio").value;
     if (!anio) return;
 
     try {
-      const response = await fetch(`http://localhost:4000/api/ventas_anuales?year=${anio}`);
-      const data = await response.json();
+      // =============================
+      // 📊 VENTAS ANUALES
+      // =============================
+      const resVentas = await fetch(
+        `http://localhost:4000/api/ventas_anuales?year=${anio}`
+      );
+      const ventasData = await resVentas.json();
 
-      // Aplicar colores al pie chart
-      data.datasets[0].backgroundColor = [
+      ventasData.datasets[0].backgroundColor = [
         "#4BC0C0", "#FF6384", "#FFCE56", "#9966FF",
         "#FF9F40", "#36A2EB", "#8E44AD", "#2ECC71",
-        "#da61ffff", "#3498DB", "#F1C40F", "#D35400"
+        "#da61ff", "#3498DB", "#F1C40F", "#D35400"
       ];
 
-      // Guardar tabla
-      setTablaMetodos(data.tablaMetodos);
+      setDatosChart(ventasData);
 
-      // Guardar datos para gráfica
-      setDatosChart(data);
+      const sumaVentas = Object.values(ventasData.tablaMetodos)
+        .reduce((acc, mes) => acc + Number(mes.total), 0);
+
+      // =============================
+      // 💸 GASTOS (TOTAL)
+      // =============================
+      const resGastos = await fetch(
+        "http://localhost:4000/reportegastos/categorias"
+      );
+      const gastosData = await resGastos.json();
+
+      const sumaGastos = gastosData.reduce(
+        (acc, g) => acc + Number(g.total),
+        0
+      );
+
+      // =============================
+      // 💰 CÁLCULOS FINALES
+      // =============================
+      setTotalGananciasAnuales(sumaVentas);
+      setTotalGastosAnuales(sumaGastos);
+      setGananciaNetaAnual(sumaVentas - sumaGastos);
+
+      setMostrarGananciaNeta(false);
 
     } catch (error) {
-      console.error("Error al obtener reporte anual:", error);
+      console.error("❌ Error al generar reporte anual:", error);
     }
   };
 
   useEffect(() => {
     if (!datosChart) return;
 
-    // Asegurar que existe solo un dataset
-    if (datosChart.datasets.length > 1) {
-      datosChart.datasets = [datosChart.datasets[0]];
-    }
-
     const ctx = document.getElementById("chartAnual");
-
     const oldChart = Chart.getChart("chartAnual");
     if (oldChart) oldChart.destroy();
-
-    const existingChart = Chart.getChart("chartAnual");
-    if (existingChart) existingChart.destroy();
 
     new Chart(ctx, {
       type: "pie",
@@ -61,30 +78,25 @@ function ReporteAnual() {
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            position: "right",
-            labels: {
-              usePointStyle: true,
-              pointStyle: "circle"
-            }
-          },
+          legend: { position: "right" },
           title: {
             display: true,
             text: "Reporte Anual de Ganancias",
-          }
-        }
-      }
+          },
+        },
+      },
     });
   }, [datosChart]);
 
   return (
-    <div className="anual">
-      {/* Barra superior */}
-      <header className="barra-superioranual">
-        <img className="logo-2anu" src={LogoEmpren} alt="Logo Emprendimiento" />
-      </header>
+   
 
-      {/* Menú lateral */}
+    <div className="anual">
+      <header className="barra-superioranual">
+        <img className="logo-2anu" src={LogoEmpren} alt="Logo" />
+      </header>
+      
+       {/* Menú lateral */}
       <label>
         <input className="lineas-check" type="checkbox" />
         <div className="Lineas">
@@ -108,67 +120,64 @@ function ReporteAnual() {
         </div>
       </label>
 
-      {/* Título */}
-      <div>
-        <h1 className="TituloAnual">Reporte de Ganancias (Anual)</h1>
-        <hr className="hranual" />
-      </div>
+      <h1 className="TituloAnual">Reporte de Ganancias (Anual)</h1>
+      <hr className="hranual" />
 
-      {/* Botón calendario */}
-      <div className="dia-container" id="btn-anual" onClick={toggleCalendario}>
+      <div className="dia-container" onClick={toggleCalendario}>
         <span className="dia-texto">Año</span>
         <i className="fa-solid fa-calendar-days fa-4x"></i>
       </div>
 
-      {/* Selector de año */}
       {mostrarCalendario && (
-        <div className="calendario-containeranual" id="calendario-anual">
-          <input
-            className="año"
-            type="number"
-            id="anio"
-            placeholder="Ingrese el año"
-            min="2000"
-            max="2100"
-          />
-          <button
-            className="actuanual"
-            id="btn-refresh-anual"
-            title="Actualizar"
-            onClick={actualizarReporte}
-          >
-            Actualizar
-          </button>
+        <div className="calendario-containeranual">
+          <input type="number" id="anio" placeholder="Ingrese el año" />
+          <button onClick={actualizarReporte}>Actualizar</button>
         </div>
       )}
 
-      {/* Gráfico */}
       <div className="chart-card anual">
         <canvas id="chartAnual"></canvas>
       </div>
 
-      {tablaMetodos && (
-        <table className="tabla-metodos">
-          <thead>
-            <tr>
-              <th>Mes</th>
-              <th>Ganancia Total</th>
-            </tr>
-          </thead>
+      {totalGananciasAnuales > 0 && !mostrarGananciaNeta && (
+        <div className="Boton_gannacia_neta">
+          <button onClick={() => setMostrarGananciaNeta(true)}>
+            Ganancias Netas
+          </button>
+        </div>
+      )}
 
-          <tbody>
-            {Object.entries(tablaMetodos).map(([mes, valores]) => {
-              const total = Number(valores.total) || 0; // asegurar entero
+      {mostrarGananciaNeta && (
+        <div className="resumen-financiero">
+          <h3>Resumen Financiero - Anual</h3>
 
-              return (
-                <tr key={mes}>
-                  <td>{mes}</td>
-                  <td><b>{Math.round(total).toLocaleString()}</b></td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+          <table className="tabla-resumen">
+            <thead>
+              <tr>
+                <th>Concepto</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ingresos Totales (Ventas)</td>
+                <td className="positivo">
+                  ${totalGananciasAnuales.toLocaleString()}
+                </td>
+              </tr>
+              <tr>
+                <td>Gastos Totales</td>
+                <td className="negativo">
+                  -${totalGastosAnuales.toLocaleString()}
+                </td>
+              </tr>
+              <tr className="fila-neta">
+                <td><strong>GANANCIA NETA</strong></td>
+                <td><strong>${gananciaNetaAnual.toLocaleString()}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

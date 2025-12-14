@@ -1,55 +1,49 @@
+/* =========================
+   RESET
+========================= */
 * {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
- height: 100%;
- margin: 0;
- padding: 0;
- width: 100%;
- min-height: 100vh;
+  width: 100%;
+  min-height: 100vh;
 }
 
-/* CONTENEDOR PRINCIPAL  */
+/* =========================
+   FONDO
+========================= */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #CADBEC, #F4E1B6);
+  background-attachment: fixed;
+  background-size: cover;
+  padding-top: 80px;
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
 .diario_modulo {
- min-height: 100vh;
- width: 100%;
- max-width: 1100px;
- margin: 0 auto;
- padding-top: 20px;
- font-family: 'Arial', sans-serif;
- background: linear-gradient(to bottom, #CADBEC, #F4E1B6); /* Columbia Blue a Wheat */
- background-attachment: fixed;
- background-size: cover;
- color: #333;
- overflow-x: hidden;
- text-align: center;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
 }
 
-/* BARRA SUPERIOR */
-.barra-superioranual {
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 8px 15px;
- background: linear-gradient(to right, #CADBEC, #F4E1B6); 
- height: 65px;
- box-shadow: 0 3px 5px #B6A999;
- border-bottom-left-radius: 15px;
-}
-
-/* Barra superior */
+/* =========================
+   BARRA SUPERIOR
+========================= */
 .barra-superior {
   display: flex;
   align-items: center;
-  padding: 8px 8px;
-  background: linear-gradient(to right, #cadbec, #e5ded3);
+  padding: 8px 20px;
+  background: linear-gradient(to right, #CADBEC, #E5DED3);
   height: 65px;
-  box-shadow: 0 3px 5px rgba(26, 21, 21, 0.2);
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 55px;
+  box-shadow: 0 3px 5px #B6A999;
   position: fixed;
   top: 0;
   left: 0;
@@ -57,230 +51,196 @@ html, body {
   z-index: 10;
 }
 
-.logo-2anu {
- height: 60px;
- margin-left: 20px;
- object-fit: contain;
+.logoem {
+  height: 55px;
+  object-fit: contain;
 }
 
-/* MENÚ LATERAL */
-.MenuRegistro2 {
- height: 100vh;
- width: 220px;
- position: fixed;
- background: linear-gradient(to bottom, #E5DED3, #B6A999);
- transform: translateX(-220px);
- transition: 0.5s ease;
- font-size: 20px;
- top: 0;
- left: 0;
- z-index: 20;
- padding-top: 80px;
+/* =========================
+   TÍTULO
+========================= */
+.Titulo {
+  font-size: 38px;
+  font-weight: 400;
+  color: #F5F6F7;
+  margin-top: 90px;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px, #B6A999 0 0 1em, #B6A999 0 0 0.2em;
 }
 
-.menu_titulo { 
- color: #6C557A;
- font-weight: 800;
- text-align: center;
- margin-bottom: 20px;
- font-size: 35px;
+hr {
+  width: 60%;
+  margin: 10px auto 25px auto;
+  border: none;
+  border-top: 2px solid #B6A999;
 }
 
-.ul2 li {
- list-style: none;
-}
-
-.ul2 li a {
- color: #6C557A; 
- font-weight: 500;
- padding: 10px 15px;
- display: flex;
- align-items: center;
- text-transform: capitalize;
- text-decoration: none;
- transition: 0.2s ease-out;
- gap: 10px;
- font-size: 18px;
- border-radius: 5px;
-}
-
-.ul2 li:hover a {
- color: #F5F6F7;
- background-color: #6C557A;
-}
-
-.ul2 li a i {
- color: #6C557A;
- min-width: 25px;
- text-align: center;
-}
-
-/* ICONO DEL MENÚ */
-.lineas-check {
- display: none;
-}
-
-.Lineas2 { 
- position: absolute;
- height: 30px;
- width: 30px;
- top: 20px;
- left: 15px;
- z-index: 21;
- cursor: pointer;
- border-radius: 5px;
- background-color: #F4E1B6; 
- box-shadow: 0 0 10px #CADBEC; 
-}
-
-.Lineas2 .common {
- position: absolute;
- height: 2px;
- width: 20px;
- background-color: #6C557A;
- border-radius: 50px;
- transition: 0.3s ease;
-}
-
-.Lineas2 .top_line { top: 30%; left: 50%; transform: translate(-50%, -50%); }
-.Lineas2 .middle_line { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.Lineas2 .bottom_line { top: 70%; left: 50%; transform: translate(-50%, -50%); }
-
-input:checked ~ .Lineas2 .top_line { left: 2px; top: 14px; width: 25px; transform: rotate(45deg); }
-input:checked ~ .Lineas2 .bottom_line { left: 2px; top: 14px; width: 25px; transform: rotate(-45deg); }
-input:checked ~ .Lineas2 .middle_line { opacity: 0; transform: translateX(20px); }
-input:checked ~ .MenuRegistro2 { transform: translateX(0); box-shadow: 0 0 15px #6C557A; }
-
-/* TÍTULO PRINCIPAL */
-.TituloAnual { 
- text-align: center;
- font-size: 40px;
- font-weight: 700;
- color: #6C557A; 
- margin-top: 110px;
- margin-bottom: 20px;
- text-shadow: 1px 1px 4px #B6A999; 
- z-index: 5;
-}
-
-/* HR */
-.hranual { 
- border: none;
- border-top: 2px solid #B6A999; 
- margin: 10px auto 20px auto;
- width: 60%;
-}
-
-/* BOTÓN DE CALENDARIO  */
+/* =========================
+   BOTÓN DÍA (CALENDARIO)
+========================= */
 .dia-container {
- width: 220px;
- margin: 25px auto;
- padding: 15px;
- border-radius: 12px;
- display: flex;
- justify-content: center;
- align-items: center;
- gap: 15px;
- cursor: pointer;
- background: linear-gradient(to right, #CADBEC, #F4E1B6);
- box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
- transition: 0.3s;
+  background-color: #E5DED3;
+  width: 140px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  transition: 0.3s;
 }
 
 .dia-container:hover {
- transform: scale(1.05);
+  background-color: #CADBEC;
 }
 
 .dia-texto {
- font-size: 20px;
- font-weight: bold;
- color: #6C557A; 
+  display: block;
+  font-size: 20px;
+  color: #33348a;
+  margin-bottom: 8px;
 }
 
-/* CONTENEDOR DEL SELECTOR DE AÑO */
-.calendario-containeranual {
- margin: 10px auto;
- background-color: #E5DED3; 
- padding: 20px;
- width: 260px;
- border-radius: 10px;
- box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
- display: flex;
- flex-direction: column;
- gap: 10px;
+/* =========================
+   CALENDARIO
+========================= */
+.calendario-container {
+  background: linear-gradient(135deg, #CADBEC, #F4E1B6) !important;
+  padding: 22px;
+  max-width: 320px;
+  margin: 20px auto;
+  border-radius: 14px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.18);
 }
 
-.año {
- padding: 10px;
- border-radius: 8px;
- border: 1px solid #B6A999; 
- text-align: center;
- font-size: 18px;
- background-color: #F5F6F7;
- color: #6C557A; 
+/* INPUT FECHA */
+.calendario-container input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d9d1c7;
+  font-size: 16px;
+  text-align: center;
+  background-color: #fffdf9;
+  margin-bottom: 15px;
 }
 
-.año::placeholder {
- color: #B6A999; 
- font-size: 18px;
+/* BOTÓN ACTUALIZAR */
+.calendario-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #f6e3b5;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
-.actuanual {
- background-color: #B6A999; 
- color: white;
- padding: 10px;
- border: none;
- border-radius: 8px;
- cursor: pointer;
- font-size: 16px;
- transition: 0.3s;
+.calendario-container button:hover {
+  background-color: #ecd49a;
 }
 
-.actuanual:hover {
- background-color: #6C557A; 
-}
-
-/* GRÁFICA */
+/* =========================
+   GRÁFICA
+========================= */
 .chart-card {
- background-color: #FFFFFF;
- width: 90%;
- margin: 20px auto;
- padding: 25px;
- border-radius: 15px;
- min-height: 420px;
- box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  width: 100%;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  min-height: 420px;
 }
 
-/* TABLA  */
-.tabla-metodos {
- width: 80%;
- margin: 20px auto;
- border-collapse: collapse;
- background: #FFFFFF;
- box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
- border-radius: 10px;
- overflow: hidden;
+/* =========================
+   BOTÓN GANANCIA NETA
+========================= */
+.Boton_gannacia_neta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
 }
 
-.tabla-metodos th {
- background-color: #B6A999; 
- color: white;
- padding: 12px;
- font-size: 18px;
+.Boton_gannacia_neta button {
+  background-color: #B6A999;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
 
-.tabla-metodos td {
- padding: 12px;
- font-size: 16px;
- border-bottom: 1px solid #ddd;
- color: #333;
+.Boton_gannacia_neta button:hover {
+  background-color: #8c7b6a;
 }
 
-.tabla-metodos tr:nth-child(even) {
- background-color: #E5DED3; /* Bone */
+/* =========================
+   RESUMEN FINANCIERO
+========================= */
+.resumen-financiero {
+  width: 100%;
+  max-width: 600px;
+  background: linear-gradient(to bottom, #ffffff, #f3e7ce);
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  color: #33348a;
 }
 
-.tabla-metodos tr:hover {
- background-color: #CADBEC; 
- color: #6C557A;
+.resumen-financiero h3 {
+  margin-bottom: 15px;
+  color: #6c4d72;
+  font-size: 24px;
+}
+
+/* =========================
+   TABLA RESUMEN
+========================= */
+.tabla-resumen {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tabla-resumen th {
+  background-color: #B6A999;
+  color: white;
+  padding: 12px;
+  font-size: 18px;
+}
+
+.tabla-resumen td {
+  padding: 12px;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-resumen tr:nth-child(even) {
+  background-color: #E5DED3;
+}
+
+/* =========================
+   COLORES DE MONTOS
+========================= */
+.positivo {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.negativo {
+  color: #c62828;
+  font-weight: bold;
+}
+
+.fila-neta {
+  background-color: #CADBEC;
+  font-size: 18px;
 }

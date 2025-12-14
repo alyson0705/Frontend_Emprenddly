@@ -85,10 +85,10 @@ function ReporteGastos() {
       {/* Contenido principal */}
       <main className="container">
         <h1 className="Titulo">Reporte de Gastos</h1>
-        <hr />
+
 
         <div className="formulario">
-          <label htmlFor="fecha">Seleccione la fecha:</label>
+          {/* <label htmlFor="fecha">Seleccione la fecha:</label> */}
           <input 
             type="date" 
             id="fecha" 
@@ -137,7 +137,7 @@ function ReporteGastos() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="monto" fill="#6C557A" />
+                <Bar dataKey="monto" fill="#ddc3ecff" />
               </BarChart>
             </ResponsiveContainer>
           </div>

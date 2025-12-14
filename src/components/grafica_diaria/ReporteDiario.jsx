@@ -85,89 +85,87 @@ function ReporteDiario() {
     };
   }, []);
 
-  return (
-    <div className="diario_modulo">
-      {/* Barra superior */}
-      <header className="barra-superior">
-        <img src={LogoEmpren} alt="Logo" className="logoem" />
-      </header>
+ return (
+  <div className="diario_modulo">
+    {/* Barra superior */}
+    <header className="barra-superior">
+      <img src={LogoEmpren} alt="Logo" className="logoem" />
+    </header>
 
-      {/* Menú lateral */}
-      <label>
-        <input className="lineas-check" type="checkbox" />
-        <div className="Lineas">
-          <span className="top_line common"></span>
-          <span className="middle_line common"></span>
-          <span className="bottom_line common"></span>
-        </div>
-
-        <div className="Menu">
-          <h1 className="menu_titulo"> Menu </h1>
-          <ul>
-            <li><a href="http://localhost:5173/usuarios"><i className="fas fa-user"></i>Usuarios</a></li>
-            <li><a href="http://localhost:5173/registroinventario"><i className="fas fa-clipboard-list"></i>Inventario</a></li>
-            <li><a href="#"><i className="fas fa-cart-plus"></i>Registro De Ventas</a></li>
-            <li><a href="http://localhost:5173/reporteventas"><i className="fas fa-chart-line"></i>Reporte De Ventas</a></li>
-            <li><a href="http://localhost:5173/registrogastos"><i className="fas fa-wallet"></i>Registro De Gastos</a></li>
-            <li><a href="http://localhost:5173/reportegastos"><i className="fas fa-file-invoice-dollar"></i>Reporte De Gastos</a></li>
-            <li><a href="http://localhost:5173/menureporte"><i className="fas fa-dollar-sign"></i>Reporte De Ganancias</a></li>
-            <li><a href="http://localhost:5173/ajustes"><i className="fas fa-cogs"></i>Ajustes</a></li>
-          </ul>
-        </div>
-      </label>
-
-      <div>
-        <h1 className="Titulo">Reporte de Ganancias (Diario)</h1>
-        <hr />
-      </div>
-
-      {/* Botón del calendario */}
-      <div className="dia-container" id="btn-dia" onClick={toggleCalendario}>
-        <span className="dia-texto">Día</span>
-        <i className="fa-solid fa-calendar-day fa-3x "></i>
-      </div>
-
-      {/* Calendario */}
-      {mostrarCalendario && (
-        <div className="calendario-container" id="calendario-diario">
-          <input
-            type="date"
-            id="fecha-dia"
-            value={fechaSeleccionada}
-            onChange={(e) => setFechaSeleccionada(e.target.value)}
-          />
-          <button id="btn-refresh-dia" title="Actualizar" onClick={handleActualizar}>
-            Actualizar
-          </button>
-        </div>
-      )}
-
-      {/* Botón Ganancia Neta */}
-      {totalGastos > 0 && !mostrarGananciaNeta && (
-        <div className="Boton_gannacia_neta">
-          <button onClick={() => setMostrarGananciaNeta(true)}>
-            Ganancias Netas
-          </button>
-        </div>
-      )}
-
-      {/* Tarjeta Ganancia Neta */}
-      {mostrarGananciaNeta && (
-        <div className="ganancia-neta-card">
-          <h2>Ganancia Neta del Día</h2>
-          <p><strong>Ganancias:</strong> ${totalGanancias}</p>
-          <p><strong>Gastos:</strong> -${totalGastos}</p>
-          <br />
-          <h3><strong>Neto:</strong> ${gananciaNeta}</h3>
-        </div>
-      )}
-
-      {/* Gráfico */}
-      <div className="chart-card">
-        <canvas id="chartDiario" ref={canvasRef}></canvas>
-      </div>
+    <div>
+      <h1 className="Titulo">Reporte de Ganancias (Diario)</h1>
+      <hr />
     </div>
-  );
+
+    {/* Botón calendario */}
+    <div className="dia-container" onClick={toggleCalendario}>
+      <span className="dia-texto">Día</span>
+      <i className="fa-solid fa-calendar-day fa-3x"></i>
+    </div>
+
+    {mostrarCalendario && (
+      <div className="calendario-container">
+        <input
+          type="date"
+          value={fechaSeleccionada}
+          onChange={(e) => setFechaSeleccionada(e.target.value)}
+        />
+        <button onClick={handleActualizar}>Actualizar</button>
+      </div>
+    )}
+
+    {/* 📊 GRÁFICA (PRIMERO) */}
+    <div className="chart-card">
+      <canvas ref={canvasRef}></canvas>
+    </div>
+
+    {/* 🔘 BOTÓN GANANCIA NETA */}
+    {totalGastos > 0 && !mostrarGananciaNeta && (
+      <div className="Boton_gannacia_neta">
+        <button onClick={() => setMostrarGananciaNeta(true)}>
+          Ganancias Netas
+        </button>
+      </div>
+    )}
+
+    {/* 📋 TABLA RESUMEN FINANCIERO */}
+    {mostrarGananciaNeta && (
+      <div className="resumen-financiero">
+        <h3>Resumen Financiero - Diario</h3>
+
+        <table className="tabla-resumen">
+          <thead>
+            <tr>
+              <th>Informacion</th>
+              <th>Monto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ingresos Totales (Ventas)</td>
+              <td className="positivo">
+                ${totalGanancias.toLocaleString()}
+              </td>
+            </tr>
+            <tr>
+              <td>Gastos Totales</td>
+              <td className="negativo">
+                -${totalGastos.toLocaleString()}
+              </td>
+            </tr>
+            <tr className="fila-neta">
+              <td><strong>GANANCIA NETA</strong></td>
+              <td>
+                <strong>${gananciaNeta.toLocaleString()}</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    )}
+  </div>
+);
+
 }
 
 export default ReporteDiario;
